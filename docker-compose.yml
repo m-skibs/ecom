@@ -1,0 +1,67 @@
+version: '3'
+
+
+services:
+
+  # TO BE IMPLEMENTED
+  order-service:
+    container_name: order_service
+    image: dockerhub-flask_live_app:1.0.0
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_URL=postgresql://postgres:postgres@flask_db:5432/postgres
+      - PRODUCT_SERVICE_URL=http://product_service:8080/products
+      - USER_SERVICE_URL=http://user_service:8080/users
+      - RABBITMQ_DEFAULT_USER=foo
+      - RABBITMQ_DEFAULT_PASS=bar
+    depends_on:
+      - database
+      - product-service
+      - user-service
+      - rabbitmq
+
+  # TO BE IMPLEMENTED
+  database:
+    container_name: flask_db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+  product-service:
+    container_name: product_service
+    image: rodolpheche/wiremock:2.23.2-alpine
+    command: --verbose
+    volumes:
+      - ./wiremock/product-service/stubs:/home/wiremock
+    ports:
+    - "8081:8080"
+
+  user-service:
+    container_name: user_service
+    image: rodolpheche/wiremock:2.23.2-alpine
+    command: --verbose
+    volumes:
+      - ./wiremock/user-service/stubs:/home/wiremock
+    ports:
+    - "8082:8080"
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.7.15-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+
+volumes:
+  pgdata: {}
+

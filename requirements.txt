@@ -1,0 +1,10 @@
+flask
+psycopg2-binary
+Flask-SQLAlchemy
+aiohttp
+asyncio
+flask[async]
+pika
+requests
+SQLAlchemy
+pytest

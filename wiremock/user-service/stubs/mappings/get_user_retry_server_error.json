@@ -1,0 +1,13 @@
+{
+    "scenarioName": "Get User Retry",
+    "requiredScenarioState": "Started",
+    "newScenarioState": "Successful Request",
+    "request": {
+        "method": "GET",
+        "url": "/users/hij789"
+    },
+    "response": {
+        "status": 500,
+        "fixedDelayMilliseconds": 300
+    }
+}

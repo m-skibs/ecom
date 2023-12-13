@@ -1,0 +1,14 @@
+{
+    "request": {
+        "urlPathPattern": "/users/abc123",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "fixedDelayMilliseconds": 300,
+        "bodyFileName": "user_success.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

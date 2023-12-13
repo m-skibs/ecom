@@ -1,0 +1,10 @@
+{
+    "request": {
+        "urlPathPattern": "/products/eowyns-soup",
+        "method": "GET"
+    },
+    "response": {
+        "status": 500,
+        "fixedDelayMilliseconds": 200
+    }
+}

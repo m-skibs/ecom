@@ -1,0 +1,14 @@
+{
+    "request": {
+        "urlPathPattern": "/products/second-breakfast",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "fixedDelayMilliseconds": 200,
+        "bodyFileName": "second-breakfast.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
